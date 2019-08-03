@@ -28,6 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Model\Commands.cs">
+      <Generator>DtsGenerator</Generator>
+      <LastGenOutput>Commands.cs.generated.d.ts</LastGenOutput>
+    </Compile>
     <Compile Update="Model\LabelCollections.cs">
       <Generator>DtsGenerator</Generator>
       <LastGenOutput>LabelCollections.cs.generated.d.ts</LastGenOutput>
@@ -51,6 +55,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Model\Commands.cs.generated.d.ts">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Commands.cs</DependentUpon>
+    </None>
     <None Update="Model\LabelCollections.cs.generated.d.ts">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

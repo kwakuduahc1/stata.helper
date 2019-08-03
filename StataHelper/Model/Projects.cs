@@ -19,5 +19,7 @@ namespace StataHelper.Model
         public byte[] Concurrency { get; set; }
 
         public virtual ICollection<Variables> Variables { get; set; }
+
+        public virtual ICollection<Commands> Commands { get; set; }
     }
 }

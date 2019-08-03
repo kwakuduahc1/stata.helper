@@ -77,5 +77,7 @@ namespace StataHelper.Model.Context
         public virtual DbSet<Variables> Variables { get; set; }
 
         public virtual DbSet<Varlabs> Varlabs { get; set; }
+
+        public virtual DbSet<Commands> Commands { get; set; }
     }
 }

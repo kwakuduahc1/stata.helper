@@ -5,5 +5,6 @@ declare module Server.Dtos {
 		description: string;
 		concurrency: any[];
 		variables: any[];
+		commands: any[];
 	}
 }
