@@ -27,6 +27,57 @@
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Model\LabelCollections.cs">
+      <Generator>DtsGenerator</Generator>
+      <LastGenOutput>LabelCollections.cs.generated.d.ts</LastGenOutput>
+    </Compile>
+    <Compile Update="Model\Labels.cs">
+      <Generator>DtsGenerator</Generator>
+      <LastGenOutput>Labels.cs.generated.d.ts</LastGenOutput>
+    </Compile>
+    <Compile Update="Model\Projects.cs">
+      <Generator>DtsGenerator</Generator>
+      <LastGenOutput>Projects.cs.generated.d.ts</LastGenOutput>
+    </Compile>
+    <Compile Update="Model\Variables.cs">
+      <Generator>DtsGenerator</Generator>
+      <LastGenOutput>Variables.cs.generated.d.ts</LastGenOutput>
+    </Compile>
+    <Compile Update="Model\VarLabs.cs">
+      <Generator>DtsGenerator</Generator>
+      <LastGenOutput>VarLabs.cs.generated.d.ts</LastGenOutput>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Model\LabelCollections.cs.generated.d.ts">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LabelCollections.cs</DependentUpon>
+    </None>
+    <None Update="Model\Labels.cs.generated.d.ts">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Labels.cs</DependentUpon>
+    </None>
+    <None Update="Model\Projects.cs.generated.d.ts">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Projects.cs</DependentUpon>
+    </None>
+    <None Update="Model\Variables.cs.generated.d.ts">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Variables.cs</DependentUpon>
+    </None>
+    <None Update="Model\VarLabs.cs.generated.d.ts">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>VarLabs.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
