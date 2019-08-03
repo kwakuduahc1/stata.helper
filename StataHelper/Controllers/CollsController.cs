@@ -8,51 +8,51 @@ using System.Threading.Tasks;
 
 namespace StataHelper.Controllers
 {
-    public class LabelsController : Controller
+    public class CollsController : Controller
     {
         private readonly AppDbContext db;
 
-        public LabelsController(DbContextOptions<AppDbContext> options) => db = new AppDbContext(options);
+        public CollsController(DbContextOptions<AppDbContext> options) => db = new AppDbContext(options);
 
         [HttpGet]
-        public async Task<IEnumerable> List() => await db.Labels.Select(x => new { x.Key, x.Label, x.LabelsID }).ToListAsync();
+        public async Task<IEnumerable> List() => await db.LabelCollections.ToListAsync();
 
         [HttpGet]
         public async Task<IActionResult> Find(short id)
         {
-            var lab = await db.Labels.FindAsync(id);
+            var lab = await db.LabelCollections.FindAsync(id);
             return lab == null ? (IActionResult)NotFound(new { Message = "Label was not found" }) : Ok(lab);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody]Labels label)
+        public async Task<IActionResult> Create([FromBody]LabelCollections collections)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { Error = "Invalid data was submitted", Message = ModelState.Values.First(x => x.Errors.Count > 0).Errors.Select(t => t.ErrorMessage).First() });
-            if (await db.Labels.AnyAsync(x => x.Label == label.Label))
+            if (await db.LabelCollections.AnyAsync(x => x.LabelName == collections.LabelName))
                 return BadRequest(new { Message = "Label already exists" });
-            db.Add(label);
+            db.Add(collections);
             await db.SaveChangesAsync();
-            return Created($"", label);
+            return Created($"", collections);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit([FromBody] Labels label)
+        public async Task<IActionResult> Edit([FromBody] LabelCollections collections)
         {
             if (!ModelState.IsValid)
                 return BadRequest(new { Error = "Invalid data was submitted", Message = ModelState.Values.First(x => x.Errors.Count > 0).Errors.Select(t => t.ErrorMessage).First() });
-            db.Entry(label).State = EntityState.Modified;
+            db.Entry(collections).State = EntityState.Modified;
             await db.SaveChangesAsync();
-            return Accepted(label);
+            return Accepted(collections);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete([FromBody] Labels label)
+        public async Task<IActionResult> Delete([FromBody] LabelCollections collections)
         {
-            var lab = await db.Labels.FindAsync(label.LabelsID);
+            var lab = await db.Labels.FindAsync(collections.LabelCollectionsID);
             db.Entry(lab).State = EntityState.Deleted;
             await db.SaveChangesAsync();
-            return Accepted(label);
+            return Accepted(collections);
         }
     }
 }

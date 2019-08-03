@@ -22,7 +22,7 @@ namespace StataHelper
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(o => o.UseSqlite("Data Source=event_organizer.db;", x =>
+            services.AddDbContext<AppDbContext>(o => o.UseSqlite("Data Source=stata-helper.db;", x =>
             {
                 x.SuppressForeignKeyEnforcement(false);
                 x.UseRelationalNulls(true);
