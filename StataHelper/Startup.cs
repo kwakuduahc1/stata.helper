@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StataHelper.Model.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace StataHelper
 {
@@ -20,6 +22,11 @@ namespace StataHelper
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(o => o.UseSqlite("Data Source=event_organizer.db;", x =>
+            {
+                x.SuppressForeignKeyEnforcement(false);
+                x.UseRelationalNulls(true);
+            }));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the Angular files will be served from this directory
