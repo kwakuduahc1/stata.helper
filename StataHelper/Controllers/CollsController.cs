@@ -15,7 +15,7 @@ namespace StataHelper.Controllers
         public CollsController(DbContextOptions<AppDbContext> options) => db = new AppDbContext(options);
 
         [HttpGet]
-        public async Task<IEnumerable> List() => await db.LabelCollections.ToListAsync();
+        public async Task<IEnumerable> List() => await db.LabelCollections.OrderByDescending(x => x.LabelName).ToListAsync();
 
         [HttpGet]
         public async Task<IActionResult> Find(short id)

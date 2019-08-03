@@ -1,1 +1,56 @@
-<p>add-lab-cols works!</p>
+<h1 class="h1 text-primary text-center">Collections Manager</h1>
+<form name="form" id="form" [formGroup]="form" (submit)="add(form.value)">
+  <fieldset>
+    <legend>Provide car information</legend>
+
+    <!--labelName-->
+    <div class="form-group form-row">
+      <label for="labelName" class="col-form-label col-sm-1">Name</label>
+      <div class="col-sm-2">
+        <input type="text" id="labelName" formControlName="labelName" class="form-control" />
+        <small>
+          <span [ngClass]="form.controls.labelName.errors?.maxlength ? 'text-danger' : ''" *ngIf="form.controls.labelName.touched && form.controls.labelName.errors?.maxlength">The maximum length is {{form.controls.labelName.errors.maxlength.requiredLength}} characters: Current is {{form.controls.labelName.errors.maxlength.actualLength}}</span>
+          <span [ngClass]="form.controls.labelName.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.labelName.touched && form.controls.labelName.errors?.required">Required</span>
+          <span [ngClass]="form.controls.labelName.errors?.minlength ? 'text-danger' : ''" *ngIf="form.controls.labelName.touched && form.controls.labelName.errors?.minlength">The minimum length is {{form.controls.labelName.errors.minlength.requiredLength}} characters: Current is {{form.controls.labelName.errors.minlength.actualLength}}</span>
+        </small>
+      </div>
+      <label for="description" class="col-form-label col-sm-1">Description</label>
+      <div class="col-sm-3">
+        <input id="description" formControlName="description" class="form-control" />
+        <small>
+          <span [ngClass]="form.controls.description.errors?.maxlength ? 'text-danger' : ''" *ngIf="form.controls.description.touched && form.controls.description.errors?.maxlength">The maximum length is {{form.controls.description.errors.maxlength.requiredLength}} characters: Current is {{form.controls.description.errors.maxlength.actualLength}}</span>
+          <span [ngClass]="form.controls.description.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.description.touched && form.controls.description.errors?.required">Required</span>
+          <span [ngClass]="form.controls.description.errors?.minlength ? 'text-danger' : ''" *ngIf="form.controls.description.touched && form.controls.description.errors?.minlength">The minimum length is {{form.controls.description.errors.minlength.requiredLength}} characters: Current is {{form.controls.description.errors.minlength.actualLength}}</span>
+        </small>
+      </div>
+      <button type="submit" [ngClass]="form.invalid ? 'btn-outline-danger' : 'btn-outline-success'" [disabled]="form.invalid || act.isProcessing" class="btn">Submit</button>
+    </div>
+  </fieldset>
+</form>
+<h2 class="h2 text-secondary text-center">Saved Collections</h2>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Labels</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of colls;let ix = index">
+      <td>{{c.labelName}}</td>
+      <td>{{c.description}}</td>
+      <td>
+        <button class="btn btn-outline-info" [routerLink]="['/labels', c.labelCollectionsID]">Labels</button>
+      </td>
+      <td>
+        <button class="btn btn-outline-primary">Edit</button>
+      </td>
+      <td>
+        <button class="btn btn-outline-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

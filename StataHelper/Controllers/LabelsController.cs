@@ -15,7 +15,7 @@ namespace StataHelper.Controllers
         public LabelsController(DbContextOptions<AppDbContext> options) => db = new AppDbContext(options);
 
         [HttpGet]
-        public async Task<IEnumerable> List() => await db.Labels.Select(x => new { x.Key, x.Label, x.LabelsID }).ToListAsync();
+        public async Task<IEnumerable> List(short id) => await db.Labels.Where(x => x.LabelCollectionsID == id).ToListAsync();
 
         [HttpGet]
         public async Task<IActionResult> Find(short id)

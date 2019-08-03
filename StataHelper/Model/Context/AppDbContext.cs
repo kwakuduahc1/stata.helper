@@ -18,7 +18,7 @@ namespace StataHelper.Model.Context
                 new LabelCollections { LabelName = "Short Yes/Nos", LabelCollectionsID = 7, Description = "Short form of yes/no responses" },
                 new LabelCollections { LabelName = "Long Yes/No's", LabelCollectionsID = 8, Description = "Long form of yes/no responses" },
                 new LabelCollections { LabelName = "Short True/False", LabelCollectionsID = 9, Description = "True of false represented as T/F" },
-                 new LabelCollections { LabelName = "True/False", LabelCollectionsID = 10, Description = "True of false as is" }
+                 new LabelCollections { LabelName = "True/False", LabelCollectionsID = 10, Description = "True or false as is" }
                 ));
             {
                 string[] shmth = new string[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" };
