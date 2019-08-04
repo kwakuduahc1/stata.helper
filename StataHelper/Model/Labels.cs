@@ -12,6 +12,7 @@ namespace StataHelper.Model
         public short LabelCollectionsID { get; set; }
 
         [Required]
+        [Range(0, 20)]
         public byte Key { get; set; }
 
         [Required, StringLength(15, MinimumLength = 2)]

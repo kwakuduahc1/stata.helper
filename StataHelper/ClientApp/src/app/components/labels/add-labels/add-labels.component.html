@@ -1,1 +1,65 @@
-<p>add-labels works!</p>
+<h1 class="h1 text-primary text-center">Labels</h1>
+<div class="card">
+  <h4 class="h3 card-header">{{coll.labelName}}</h4>
+  <div class="card-body">
+    <h5 class="card-title">{{coll.description}}</h5>
+  </div>
+</div>
+
+<form name="form" id="form" [formGroup]="form" (submit)="getForms(form.controls.number.value)">
+  <!--number-->
+  <fieldset>
+    <legend>Number of labels to generate</legend>
+    <div class="form-group form-row">
+      <label for="number" class="col-form-label col-sm-1">Number</label>
+      <div class="col-sm-2">
+        <input type="number" id="number" formControlName="number" class="form-control" />
+        <span [ngClass]="form.controls.number.touched && form.controls.number.errors?.min ? 'text-danger' : ''" *ngIf="form.controls.number.touched && form.controls.number.errors?.min">Min should be {{form.controls.number.errors.min.min}}</span>
+        <span [ngClass]="form.controls.number.touched && form.controls.number.errors?.required ? 'text-danger' : ''" *ngIf="form.controls.number.touched && form.controls.number.errors?.required">Required</span>
+        <span [ngClass]="form.controls.number.touched && form.controls.number.errors?.max ? 'text-danger' : ''" *ngIf="form.controls.number.touched && form.controls.number.errors?.max">Max should be {{form.controls.number.errors.max.max}}</span>
+      </div>
+      <button type="submit" [ngClass]="form.invalid ? 'btn-outline-danger' : 'btn-outline-success'" [disabled]="form.invalid || act.isProcessing" class="btn">Submit</button>
+    </div>
+  </fieldset>
+</form>
+<h2>New Labels</h2>
+<form name="form" id="form" [formGroup]="f" *ngFor="let f of forms; let fix = index">
+  <fieldset>
+    <legend>Label {{fix+1}}</legend>
+    <!--number-->
+    <div class="form-group form-row">
+      <label for="key" class="col-form-label col-sm-1">key</label>
+      <div class="col-sm-2">
+        <input type="number" id="key" formControlName="key" class="form-control" />
+        <span [ngClass]="f.controls.key.touched && f.controls.key.errors?.min ? 'text-danger' : ''" *ngIf="f.controls.key.touched && f.controls.key.errors?.min">Min should be {{f.controls.key.errors.min.min}}</span>
+        <span [ngClass]="f.controls.key.touched && f.controls.key.errors?.required ? 'text-danger' : ''" *ngIf="f.controls.key.touched && f.controls.key.errors?.required">Required</span>
+        <span [ngClass]="f.controls.key.touched && f.controls.key.errors?.max ? 'text-danger' : ''" *ngIf="f.controls.key.touched && f.controls.key.errors?.max">Max should be {{f.controls.key.errors.max.max}}</span>
+      </div>
+      <label for="label" class="col-form-label col-sm-1">label</label>
+      <div class="col-sm-3">
+        <input id="label" formControlName="label" class="form-control" />
+        <small>
+          <span [ngClass]="f.controls.label.errors?.maxlength ? 'text-danger' : ''" *ngIf="f.controls.label.touched && f.controls.label.errors?.maxlength">The maximum length is {{f.controls.label.errors.maxlength.requiredLength}} characters: Current is {{f.controls.label.errors.maxlength.actualLength}}</span>
+          <span [ngClass]="f.controls.label.errors?.required ? 'text-danger' : ''" *ngIf="f.controls.label.touched && f.controls.label.errors?.required">Required</span>
+          <span [ngClass]="f.controls.label.errors?.minlength ? 'text-danger' : ''" *ngIf="f.controls.label.touched && f.controls.label.errors?.minlength">The minimum length is {{f.controls.label.errors.minlength.requiredLength}} characters: Current is {{f.controls.label.errors.minlength.actualLength}}</span>
+        </small>
+      </div>
+      <button type="button" (click)="removeForm(fix)" class="btn btn-outline-warning">Remove</button>
+    </div>
+  </fieldset>
+</form>
+<button class="btn btn-outline-primary" (click)="gen()">Generate</button>
+<table class="table table-striped table-responsive-md">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Value</th>
+      <th>Label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let l of labs;let ix=index">
+      <td>{{l.key}}</td>
+      <td>{{l.label}}</td>
+    </tr>
+  </tbody>
+</table>

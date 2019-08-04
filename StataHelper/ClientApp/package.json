@@ -1,6 +1,6 @@
 {
   "name": "stata.helper",
-  "description": "A software to help generate stata commands for a do file",
+  "description": "A software to help generate STATA commands for a do file",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
